@@ -181,11 +181,14 @@ getDefaultAttr (ForceAttrAllowStyle _ m) = getDefaultAttr m
 getDefaultAttr (AttrMap d _) = d
 
 combineAttrs :: Attr -> Attr -> Attr
-combineAttrs (Attr s1 f1 b1 u1) (Attr s2 f2 b2 u2) =
-    Attr (s1 `combineStyles` s2)
-         (f1 `combineMDs` f2)
-         (b1 `combineMDs` b2)
-         (u1 `combineMDs` u2)
+combineAttrs a1 a2 =
+    Attr { attrStyle          = attrStyle a1 `combineStyles` attrStyle a2
+         , attrForeColor      = attrForeColor a1 `combineMDs` attrForeColor a2
+         , attrBackColor      = attrBackColor a1 `combineMDs` attrBackColor a2
+         , attrURL            = attrURL a1 `combineMDs` attrURL a2
+         , attrUnderlineStyle = attrUnderlineStyle a1 `combineMDs` attrUnderlineStyle a2
+         , attrUnderlineColor = attrUnderlineColor a1 `combineMDs` attrUnderlineColor a2
+         }
 
 combineMDs :: MaybeDefault a -> MaybeDefault a -> MaybeDefault a
 combineMDs _ (SetTo v) = SetTo v

@@ -12,6 +12,7 @@ import Test.QuickCheck
 import qualified Data.IMap as IMap
 import qualified Data.IntMap as IntMap
 
+import qualified Attrs
 import qualified List
 import qualified Render
 
@@ -116,5 +117,5 @@ return []
 
 main :: IO ()
 main =
-  (and <$> sequenceA [$quickCheckAll, List.main, Render.main])
+  (and <$> sequenceA [$quickCheckAll, Attrs.main, List.main, Render.main])
   >>= bool exitFailure exitSuccess

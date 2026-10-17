@@ -29,7 +29,7 @@
 -- following values (e.g. @"[bold,underline]"@) indicating that all
 -- of the specified styles be used. Valid styles are @standout@,
 -- @underline@, @reverseVideo@, @blink@, @dim@, @italic@,
--- @strikethrough@, and @bold@.
+-- @strikethrough@, @overline@, and @bold@.
 --
 -- The @other@ section specifies for each attribute name in the theme
 -- the same @fg@, @bg@, and @style@ settings as for the default
@@ -256,6 +256,7 @@ allStyles =
     , ("dim", dim)
     , ("bold", bold)
     , ("italic", italic)
+    , ("overline", overline)
     ]
 
 parseStyle :: T.Text -> Either String Style
